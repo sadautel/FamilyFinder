@@ -1,0 +1,74 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+      <form id="create-account" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="first_name">First Name:</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control required"
+                size="120"
+                max="120">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="last_name">Last Name:</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control required"
+                size="120"
+                max="120">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="birthdate">Birthdate:</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control required"
+                size="120"
+                max="120">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="email">Email:</label>
+              <input
+                type="text"
+                id="email"
+                class="form-control required"
+                size="120"
+                max="255"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+               >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="password">Password:</label>
+              <input
+                type="text"
+                id="password"
+                class="form-control invalid"
+                size="150"
+                max="255"
+                >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 btn-toolbar">
+              <button class="btn btn-success" type="submit" [disabled]="!f.valid">Create Account</button>
+              <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+            </div>
+          </div>
+      </form> 
+  </div>

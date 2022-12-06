@@ -1,0 +1,29 @@
+{
+	"tree": [{
+    "id": "1",
+    "firstName": "Savannah",
+    "lastName": "Dautel",
+    "birthDate": "04/08/1997",
+    "deathDate": "04/08/2052",
+    "imageUrl": "../../assets/images/barzeer.jpg"
+    
+  },
+  {
+    "id": "2",
+    "firstName": "Savannah",
+    "lastName": "Dautel",
+    "birthDate": "04/08/1997",
+    "deathDate": "04/08/2052",
+    "imageUrl": "../../assets/images/barzeer.jpg"  
+  },
+
+  {
+    "id": "3",
+    "firstName": "Savannah",
+    "lastName": "Dautel",
+    "birthDate": "04/08/1997",
+    "deathDate": "04/08/2052",
+    "imageUrl": "../../assets/images/barzeer.jpg"
+}
+  
+]}
