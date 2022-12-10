@@ -8,7 +8,9 @@ export const MOCKTREE: Tree[] = [
     firstName: 'Savannah',
     lastName: 'Dautel',
     birthDate: '04/08/1997',
+    birthPlace: 'Utah',
     deathDate: '04/08/2052',
+    deathPlace: 'Idaho',
     imageUrl: '../../assets/images/barzeer.jpg',
     
   },

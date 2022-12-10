@@ -3,29 +3,15 @@
     <div class="panel-heading">
     <div class="row">
         <div class="col-xs-12">
-          <h1>{{tree.firstName}}</h1>
+        <h1>{{tree.firstName}} {{tree.lastName}}</h1>
+        <p><b>BirthDate: </b>{{tree.birthDate}},  <b>Birth Place: </b>{{tree.birthPlace}}</p>
+        <p><b>DeathDate: </b>{{tree.deathDate}},  <b>Death Place: </b>{{tree.deathPlace}}</p>
+        <p><b>Father: </b>{{tree.fatherFirstName}} {{tree.fatherLastName}}</p>
+        <p><b>Mother: </b>{{tree.motherFirstName}} {{tree.motherLastName}}</p>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-xs-12">
-          <h1>{{tree.lastName}}</h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12">
-          <h1>{{tree.birthDate}}</h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12">
-          <h1>{{tree.deathDate}}</h1>
-        </div>
-    </div>
-    
-    <div class="row">
+      <div class="row">
         <div class="pull-left">
         <div class="col-xs-12">
             <img src="{{tree.imageUrl}}" alt="" class="img-responsive">

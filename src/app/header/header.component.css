@@ -2,6 +2,11 @@
     background-color: #6BA25B;
     color: #ffffff;
 }
+.navbar-brand:hover{
+    background-color: #6BA25B;
+    color: #ffffff;
+}
+
 .navbar{
     background-color: #D7cdba;
 }

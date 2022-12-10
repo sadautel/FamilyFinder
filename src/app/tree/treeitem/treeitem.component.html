@@ -3,7 +3,11 @@
 routerLink="{{tree.id}}" routerLinkActive="active">
 
     <div class="pull-left">
-        <h4 class="list-group-item-heading">{{tree.firstName}}, {{tree.lastName}}</h4>
+        <h4 class="list-group-item-heading">{{tree.firstName}}, {{tree.lastName}}, Gender: {{tree.gender}}</h4>
+        <p><b>BirthDate: </b>{{tree.birthDate}},  <b>Birth Place: </b>{{tree.birthPlace}}</p>
+        <p><b>DeathDate: </b>{{tree.deathDate}},  <b>Death Place: </b>{{tree.deathPlace}}</p>
+        <p><b>Father: </b>{{tree.fatherFirstName}} {{tree.fatherLastName}}</p>
+        <p><b>Mother: </b>{{tree.motherFirstName}} {{tree.motherLastName}}</p>
     </div>
     <span class="pull-right">
         <img src="{{tree.imageUrl}}" alt="" class="img-responsive" style="max-height: 50px;">

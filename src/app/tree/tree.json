@@ -3,27 +3,16 @@
     "id": "1",
     "firstName": "Savannah",
     "lastName": "Dautel",
+    "gender": "Female",
     "birthDate": "04/08/1997",
+    "birthPlace": "Utah",
     "deathDate": "04/08/2052",
-    "imageUrl": "../../assets/images/barzeer.jpg"
-    
-  },
-  {
-    "id": "2",
-    "firstName": "Savannah",
-    "lastName": "Dautel",
-    "birthDate": "04/08/1997",
-    "deathDate": "04/08/2052",
+    "deathPlace": "Idaho",
+    "motherFirstName": "Keri",
+    "motherLastName": "Dautel",
+    "fatherFirstName": "Darren",
+    "fatherLastName": "Dautel",
     "imageUrl": "../../assets/images/barzeer.jpg"  
-  },
-
-  {
-    "id": "3",
-    "firstName": "Savannah",
-    "lastName": "Dautel",
-    "birthDate": "04/08/1997",
-    "deathDate": "04/08/2052",
-    "imageUrl": "../../assets/images/barzeer.jpg"
-}
-  
+    
+  }
 ]}

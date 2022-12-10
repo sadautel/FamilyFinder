@@ -51,8 +51,15 @@ export class TreeeditComponent implements OnInit {
       value.firstName,
       value.lastName,
       value.birthDate,
+      value.gender,
+      value.birthPlace,
       value.deathDate,
-      value.imageUrl,
+      value.deathPlace,
+      value.motherFirstName,
+      value.motherLastName,
+      value.fatherFirstName,
+      value.fatherLastName,
+      value.imageUrl
     );
     if (this.editMode && this.originalTree) {
       this.treeService.updateTree(this.originalTree, newTree);
@@ -61,6 +68,7 @@ export class TreeeditComponent implements OnInit {
     }
 
     this.router.navigate(['/tree']);
+    
   }
 
   onCancel() {

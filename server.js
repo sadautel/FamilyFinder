@@ -4,6 +4,7 @@ var http = require("http");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var mongoose = require("mongoose")
 
 
 // import the routing file to handle the default (index) route
@@ -42,7 +43,7 @@ app.use((req, res, next) => {
 
 // Tell express to use the specified director as the
 // root directory for your web site
-app.use(express.static(path.join(__dirname, "dist/family-finder")));
+ app.use(express.static(path.join(__dirname, "dist/family-finder")));
 
 // Tell express to map the default route ('/') to the index route
 app.use("/", index);
@@ -51,22 +52,22 @@ app.use("/", index);
 app.use("/tree", treeRoutes);
 
 
-// Tell express to map all other non-defined routes back to the index page
+//Tell express to map all other non-defined routes back to the index page
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist/family-finder/index.html"));
 });
 
-// // establish a connection to the mongo database
-// mongoose.connect('mongodb://localhost:27017/cms',
-//    { useNewUrlParser: true }, (err, res) => {
-//       if (err) {
-//          console.log('Connection failed: ' + err);
-//       }
-//       else {
-//          console.log('Connected to database!');
-//       }
-//    }
-// );
+// establish a connection to the mongo database
+mongoose.connect('mongodb://localhost:27017/FamilyFinder',
+   { useNewUrlParser: true }, (err, res) => {
+      if (err) {
+         console.log('Connection failed: ' + err);
+      }
+      else {
+         console.log('Connected to database!');
+      }
+   }
+);
 
 // Define the port address and tell express to use this port
 const port = process.env.PORT || "3000";

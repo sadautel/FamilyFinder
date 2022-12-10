@@ -7,12 +7,15 @@ import { TreedetailsComponent } from "./tree/treedetails/treedetails.component";
 import { TreeeditComponent } from "./tree/treeedit/treeedit.component";
 import { LoginComponent } from "./user-account/login/login.component";
 import { CreateAccountComponent } from "./user-account/create-account/create-account.component";
+import { AuthComponent } from "./auth/auth.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 const appRoutes:  Routes = [
     {path: '', redirectTo:'/tree', pathMatch: 'full'},
     {path: 'connections', component: ConnectionsComponent},
     {path: 'messages',   component: MessagesComponent},
     {path: 'tree',  component: TreeComponent,
+    canActivate: [AuthGuard],
     children: [
         {
           path: 'new',
@@ -36,9 +39,13 @@ const appRoutes:  Routes = [
           path: 'new',
           component: CreateAccountComponent,
         }
-      ], }
+      ], },
+
+    {path: 'auth', component: AuthComponent}
 
 ];
+
+
 
 @NgModule({
     imports: [ RouterModule.forRoot(appRoutes)],

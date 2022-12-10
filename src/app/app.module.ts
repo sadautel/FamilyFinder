@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { BackgroundComponent } from './background/background.component';
-import { LayoutComponent } from './layout/layout.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { CreateAccountComponent } from './user-account/create-account/create-account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,21 +13,22 @@ import { TreedetailsComponent } from './tree/treedetails/treedetails.component';
 import { TreeitemComponent } from './tree/treeitem/treeitem.component';
 import { TreelistComponent } from './tree/treelist/treelist.component';
 import { TreeeditComponent } from './tree/treeedit/treeedit.component';
-import { TreeGridModule } from '@syncfusion/ej2-angular-treegrid';
 import { AppRoutingModule } from './app-routing.module';
 import { DndModule } from 'ng2-dnd';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {TreeFilterPipe} from './tree/tree-filter.pipe';
-import { NewtreeComponent } from './tree/newtree/newtree.component';
-import { AuthComponent } from './auth/auth.comonent';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComonent } from './common/loading-spinner.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { TreeService } from './tree/tree.service';
+import { TreeDoToComponent } from './tree/treeToDoList/treetodolist.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    BackgroundComponent,
-    LayoutComponent,
     UserAccountComponent,
     CreateAccountComponent,
     TreeComponent,
@@ -42,19 +40,20 @@ import { AuthComponent } from './auth/auth.comonent';
     TreelistComponent,
     TreeeditComponent,
     TreeFilterPipe,
-    NewtreeComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComonent,
+    TreeDoToComponent
   ],
+  
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    TreeGridModule,
     AppRoutingModule,
     DndModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [TreeService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

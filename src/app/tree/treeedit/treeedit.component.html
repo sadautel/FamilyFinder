@@ -34,6 +34,22 @@
           </div>
 
           <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="gender">Gender:</label>
+            <input
+              type="text"
+              id="gender"
+              class="form-control required"
+              size="120"
+              max="120"
+              name="gender"
+              #name="ngModel"
+              [ngModel]="tree?.gender"
+              required>
+          </div>
+        </div>
+
+          <div class="row">
             <div class="col-sm-12 form-group">
               <label for="birthDate">Birth Date:</label>
               <input
@@ -52,6 +68,22 @@
 
           <div class="row">
             <div class="col-sm-12 form-group">
+              <label for="birthPlace">Birth Place:</label>
+              <input
+                type="text"
+                id="birthPlace"
+                class="form-control required"
+                size="120"
+                max="120"
+                name="birthPlace"
+                #name="ngModel"
+                [ngModel]="tree?.birthPlace"
+                required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
               <label for="deathDate">Death Date:</label>
               <input
                 type="text"
@@ -62,10 +94,89 @@
                 name="deathDate"
                 #name="ngModel"
                 [ngModel]="tree?.deathDate"
-                pattern="\d{1,2}/\d{1,2}/\d{4}"
-                required>
+                pattern="\d{1,2}/\d{1,2}/\d{4}">
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="deathPlace">Death Place:</label>
+              <input
+                type="text"
+                id="deathPlace"
+                class="form-control required"
+                size="120"
+                max="120"
+                name="deathPlace"
+                #name="ngModel"
+                [ngModel]="tree?.deathPlace">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="motherFirstName">Mothers First Name:</label>
+              <input
+                type="text"
+                id="motherFirstName"
+                class="form-control required"
+                size="120"
+                max="120"
+                name="motherFirstName"
+                #name="ngModel"
+                [ngModel]="tree?.motherFirstName"
+                >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="motherLastName">Mothers Last Name:</label>
+              <input
+                type="text"
+                id="motherLastName"
+                class="form-control required"
+                size="120"
+                max="120"
+                name="motherLastName"
+                #name="ngModel"
+                [ngModel]="tree?.motherLastName"
+                >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="fatherFirstName">Fathers First Name:</label>
+              <input
+                type="text"
+                id="fatherFirstName"
+                class="form-control required"
+                size="120"
+                max="120"
+                name="fatherFirstName"
+                #name="ngModel"
+                [ngModel]="tree?.fatherFirstName"
+                >
+            </div>
+          </div>
+
+           <div class="row">
+            <div class="col-sm-12 form-group">
+              <label for="fatherLastName">Fathers Last Name:</label>
+              <input
+                type="text"
+                id="fatherLastName"
+                class="form-control required"
+                size="120"
+                max="120"
+                name="fatherLastName"
+                #name="ngModel"
+                [ngModel]="tree?.fatherLastName"
+                >
+            </div>
+          </div>
+
 
         <div class="row">
           <div class="col-sm-12 form-group">

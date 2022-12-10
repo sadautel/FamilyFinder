@@ -1,9 +1,9 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import { MOCKTREE } from './MOCKTREE';
 import {Tree} from './tree.model';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { AuthService } from '../auth/auth.service';
+import { take } from 'rxjs/operators'
 
   @Injectable({
     providedIn: 'root'
@@ -15,16 +15,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
     maxTreeId: number;
 
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private authService: AuthService) {
        this.getTrees();
        this.maxTreeId = this.getMaxId();
     }
 
-    getTrees(){
-      this.http.get('https://familyfinder-20a8c-default-rtdb.firebaseio.com/tree.json')
-        .subscribe(
-          // success method
-          (trees: Tree[]) => {
+    getTrees(){ 
+      const token = this.authService.user.subscribe().unsubscribe();
+      return this.http.get('https://familyfinder2-69e71-default-rtdb.firebaseio.com/tree.json?auth=' + token)
+        .subscribe((trees: Tree[]) => {
             this.trees = trees;
             this.maxTreeId = this.getMaxId();
             this.trees.sort((a, b) => (a.firstName < b.firstName) ? 1 : (a.lastName > b.lastName) ? -1 : 0)
@@ -100,7 +99,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
       'Content-Type': 'application/json'
     });
 
-    this.http.put('https://familyfinder-20a8c-default-rtdb.firebaseio.com/tree.json', trees, { headers: headers })
+    this.http.put('https://familyfinder2-69e71-default-rtdb.firebaseio.com/tree.json', trees, { headers: headers })
       .subscribe( () => {
           this.treeListChangedEvent.next(this.trees.slice());
         }
