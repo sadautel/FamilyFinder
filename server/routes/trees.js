@@ -6,11 +6,10 @@ var router = express.Router();
 
 router.get("/", (req, res, next) => {
   Tree.find()
-    .populate("group")
-    .then((trees) => {
+    .then((tree) => {
       res.status(200).json({
         message: "Retrieved tree from database.",
-        trees: trees,
+        tree: tree,
       });
     })
     .catch((err) => {
@@ -22,7 +21,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const maxTreeId = sequenceGenerator.nextId("trees");
+  const maxTreeId = sequenceGenerator.nextId("tree");
 
   const tree = new Tree({
     id: maxTreeId,

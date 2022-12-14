@@ -3,7 +3,8 @@
 routerLink="{{tree.id}}" routerLinkActive="active">
 
     <div class="pull-left">
-        <h4 class="list-group-item-heading">{{tree.firstName}}, {{tree.lastName}}, Gender: {{tree.gender}}</h4>
+        <h4 class="list-group-item-heading">{{tree.firstName}}, {{tree.lastName}}</h4>
+        <p><b>Gender: </b>{{tree.gender}}</p>
         <p><b>BirthDate: </b>{{tree.birthDate}},  <b>Birth Place: </b>{{tree.birthPlace}}</p>
         <p><b>DeathDate: </b>{{tree.deathDate}},  <b>Death Place: </b>{{tree.deathPlace}}</p>
         <p><b>Father: </b>{{tree.fatherFirstName}} {{tree.fatherLastName}}</p>

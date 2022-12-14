@@ -27,13 +27,13 @@ export class TreeeditComponent implements OnInit {
 
   ngOnInit(){
     this.route.params.subscribe((params: Params) => {
-      let id = params.id;
-      if (!id || id == null) {
+      this.id = params['id'];
+      if (this.id === undefined || this.id === null) {
         this.editMode = false;
         return;
       }
 
-      this.originalTree = this.treeService.getTree(id);
+      this.originalTree = this.treeService.getTree(this.id);
 
       if (this.originalTree == null || !this.originalTree) {
         return;
@@ -47,11 +47,10 @@ export class TreeeditComponent implements OnInit {
   onSubmit(form: NgForm) {
     const value = form.value;
     const newTree = new Tree(
-      value.id,
       value.firstName,
       value.lastName,
-      value.birthDate,
       value.gender,
+      value.birthDate,
       value.birthPlace,
       value.deathDate,
       value.deathPlace,
@@ -70,6 +69,7 @@ export class TreeeditComponent implements OnInit {
     this.router.navigate(['/tree']);
     
   }
+  
 
   onCancel() {
     this.router.navigate(['/tree']);

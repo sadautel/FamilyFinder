@@ -6,6 +6,7 @@ import { User } from "./user.model";
 import { Token } from "@angular/compiler";
 import { Router } from "@angular/router";
 
+
 export interface AuthResponseData{
     idToken: string;
     email: string;
@@ -137,4 +138,6 @@ export class AuthService{
             }
             return throwError(errorMessage);
         }
+
+
     }

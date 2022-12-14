@@ -9,6 +9,7 @@ import { AuthService } from "../auth/auth.service";
 export class HeaderComponent implements OnInit, OnDestroy{
   private userSub: Subscription;
   isAuth = false;
+  collapsed = true;
 
   constructor(private authService: AuthService) {}
   @Output() selectedFeatureEvent = new EventEmitter<string>();

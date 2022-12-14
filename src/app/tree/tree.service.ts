@@ -20,30 +20,41 @@ import { take } from 'rxjs/operators'
        this.maxTreeId = this.getMaxId();
     }
 
-    getTrees(){ 
-      const token = this.authService.user.subscribe().unsubscribe();
-      return this.http.get('https://familyfinder2-69e71-default-rtdb.firebaseio.com/tree.json?auth=' + token)
-        .subscribe((trees: Tree[]) => {
-            this.trees = trees;
-            this.maxTreeId = this.getMaxId();
-            this.trees.sort((a, b) => (a.firstName < b.firstName) ? 1 : (a.lastName > b.lastName) ? -1 : 0)
-            this.treeListChangedEvent.next(this.trees.slice());
-          },
-          // error method
-          (error: any) => {
-            console.log(error);
-          }
-        )
+    
+
+    sortAndSend() {
+      this.trees.sort((first, second) => {
+        if (first < second) return -1;
+        if (first > second) return 1;
+        return 0;
+      });
+      this.treeListChangedEvent.next(this.trees.slice());
     }
 
-    getTree(id: string) {
-     for(let tree of this.trees){
-       if(tree.id === id){
-         return tree;
-       }
-     }
-     return null;
-    } 
+    getTrees(){ 
+      const token = this.authService.user.subscribe().unsubscribe();
+      return this.http.get<{ message: string; trees: Tree[] }>(
+        'http://localhost:3000/tree'
+      )
+      .subscribe({
+        next: (response) => {
+          console.log(response.message);
+          this.trees = response.trees;
+          this.sortAndSend();
+        },
+        error: (error) => {
+          console.error(error.message);
+          console.error(error.error);
+        },
+      });
+  }
+    
+
+  getTree(id: string): Tree {
+    return this.trees.find(
+      (tree) => tree.id === id || tree._id === id
+    );
+  }
     deleteTree(tree: Tree) {
      if (tree === null || tree === undefined) {
        return;
@@ -70,39 +81,52 @@ import { take } from 'rxjs/operators'
  
    addTree(newTree: Tree) {
  
-     if (newTree === null || newTree === undefined) {
-       return;
-     }
-     this.maxTreeId++;
-     newTree.id = this.maxTreeId.toString();
-     this.trees.push(newTree);
-     this.storeTree();
-   }
+    if (!newTree) return;
+    newTree.id = '';
+    this.http
+      .post<{ message: string; tree: Tree }>(
+        'http://localhost:3000/tree',
+        newTree,
+        { headers: new HttpHeaders().set('Content-Type', 'application/json') }
+      )
+      .subscribe({
+        next: (response) => {
+          console.log(response.message);
+          this.trees.push(response.tree);
+          this.sortAndSend();
+        },
+        error: (error) => {
+          console.error(error.message);
+          console.error(error.error);
+        },
+      });
+  }
  
    updateTree(originalTree: Tree, newTree: Tree) {
-     if (originalTree === null || originalTree === undefined || newTree === null || newTree === undefined) {
- 
-       return;
-     }
-     const pos = this.trees.indexOf(originalTree);
-     if (pos < 0) {
-       return;
-     }
-     newTree.id = originalTree.id;
-     document[pos] = newTree;
-     this.storeTree();
-   }    
+    if (!newTree || !originalTree) return;
+    const pos = this.trees.indexOf(originalTree);
+    if (pos < 0) return;
 
-   storeTree() {
-    let trees = JSON.stringify(this.trees);
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    this.http.put('https://familyfinder2-69e71-default-rtdb.firebaseio.com/tree.json', trees, { headers: headers })
-      .subscribe( () => {
-          this.treeListChangedEvent.next(this.trees.slice());
+    newTree.id = originalTree.id;
+    newTree._id = originalTree._id;
+    this.http
+      .put<{ message: string }>(
+        'http://localhost:3000/tree/' + originalTree.id,
+        newTree,
+        {
+          headers: new HttpHeaders().set('Content-Type', 'application/json'),
         }
       )
+      .subscribe({
+        next: (response) => {
+          console.log(response.message);
+          this.trees[pos] = newTree;
+          this.sortAndSend();
+        },
+        error: (error) => {
+          console.error(error.message);
+          console.error(error.error);
+        },
+      });
   }
  }
